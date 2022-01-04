@@ -1,0 +1,79 @@
+db.inv.insertMany([
+{
+   _id: 1,
+   code: "xyz",
+   tags: [ "school", "book", "bag", "headphone", "appliance" ],
+   qty: [
+          { size: "S", num: 10, color: ["blue","red"] },
+          { size: "M", num: 45, color: ["blue","red"] },
+          { size: "L", num: 100, color: ["green","red"] }
+        ]
+},
+{
+   _id: 2,
+   code: "abc",
+   tags: [ "appliance", "school", "headphone" ],
+   qty: [
+          { size: "6", num: 100, color: ["green","red"] },
+          { size: "6", num: 50, color: ["blue","red"] },
+          { size: "8", num: 100, color: ["brown","orange"] }
+        ]
+},
+{
+   _id: 3,
+   code: "efg",
+   tags: [ "bag","appliance","book" ],
+   qty: [
+          { size: "S", num: 10, color: ["blue","red"] },
+          { size: "M", num: 100, color: ["blue","green"] },
+          { size: "L", num: 100, color: ["green","red"] }
+        ]
+}
+])
+
+db.inv.updateMany({},{$addToSet:{'tags':'school'}})
+db.inv.find()
+{ "_id" : 1, "code" : "xyz", "tags" : [ "school", "book", "bag", "headphone", "appliance" ], 
+"qty" : [ 
+		{ "size" : "S", "num" : 10, "color" : [ "blue", "red" ] }, 
+		{ "size" : "M", "num" : 45, "color" : [ "blue", "red" ] }, 
+		{ "size" : "L", "num" : 100, "color" : [ "green", "red" ] } ] }
+{ "_id" : 2, "code" : "abc", "tags" : [ "appliance", "school", "headphone" ], 
+"qty" : [ 
+		{ "size" : "6", "num" : 100, "color" : [ "green", "red" ] }, 
+		{ "size" : "6", "num" : 50, "color" : [ "blue", "red" ] }, 
+		{ "size" : "8", "num" : 100, "color" : [ "brown", "orange" ] } ] }
+{ "_id" : 3, "code" : "efg", "tags" : [ "bag", "appliance", "book", "school" ], 
+"qty" : [ 
+		{ "size" : "S", "num" : 10, "color" : [ "blue", "red" ] }, 
+		{ "size" : "M", "num" : 100, "color" : [ "blue", "green" ] }, 
+		{ "size" : "L", "num" : 100, "color" : [ "green", "red" ] } ] }
+
+db.inv.updateMany({"_id" : 3},{$push:{'tags':'Chair'}})
+db.inv.find()
+
+{ "_id" : 1, "code" : "xyz", "tags" : [ "school", "book", "bag", "headphone", "appliance" ], 
+"qty" : [ 
+		{ "size" : "S", "num" : 10, "color" : [ "blue", "red" ] }, 
+		{ "size" : "M", "num" : 45, "color" : [ "blue", "red" ] }, 
+		{ "size" : "L", "num" : 100, "color" : [ "green", "red" ] } ] }
+{ "_id" : 2, "code" : "abc", "tags" : [ "appliance", "school", "headphone" ], 
+"qty" : [ 
+		{ "size" : "6", "num" : 100, "color" : [ "green", "red" ] }, 
+		{ "size" : "6", "num" : 50, "color" : [ "blue", "red" ] }, 
+		{ "size" : "8", "num" : 100, "color" : [ "brown", "orange" ] } ] }
+{ "_id" : 3, "code" : "efg", "tags" : [ "bag", "appliance", "book", "school" ,"Chair"], 
+"qty" : [ 
+		{ "size" : "S", "num" : 10, "color" : [ "blue", "red" ] }, 
+		{ "size" : "M", "num" : 100, "color" : [ "blue", "green" ] }, 
+		{ "size" : "L", "num" : 100, "color" : [ "green", "red" ] } ] }
+		
+db.inv.updateMany({},{$push:{'tags':{$each:['bottle','cable','mic'],$position:2}}})
+db.inv.find()
+
+{ "_id" : 1, "code" : "xyz", 
+	"tags" : [ "school", "book", "bottle", "cable", "mic", "bag", "headphone", "appliance" ] } 
+{ "_id" : 2, "code" : "abc", 
+	"tags" : [ "appliance", "school", "bottle", "cable", "mic", "headphone" ]} , 
+{ "_id" : 3, "code" : "efg", 
+	"tags" : [ "bag", "appliance", "bottle", "cable", "mic", "book", "school", "Chair" ]}

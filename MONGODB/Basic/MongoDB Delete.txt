@@ -1,0 +1,11 @@
+#To delete all document in collection
+
+db.collectionName.remove({})
+
+#To delete document in collection with condition
+
+db.collectionName.remove({condition})
+
+#To delete document in collection with objectid
+
+db.collectionName.remove({"_id" : ObjectId("618dc501fc249b6918c15bbd")})

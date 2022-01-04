@@ -1,0 +1,25 @@
+db.createCollection('updateOperator')
+
+db.updateOperator.insertMany([
+{ _id: 1, item: { name: "ab", code: "123" }, qty: 15, tags: [ "A", "B", "C" ], last_modified:""},
+{ _id: 2, item: { name: "cd", code: "123" }, qty: 20, tags: [ "B" ], last_modified:""},
+{ _id: 3, item: { name: "ij", code: "456" }, qty: 25, tags: [ "A", "B" ], last_modified:""},
+{ _id: 4, item: { name: "xy", code: "456" }, qty: 30, tags: [ "B", "A" ], last_modified:""},
+{ _id: 5, item: { name: "mn", code: "000" }, qty: 20, tags: [ [ "A", "B" ], "C" ], last_modified:""}
+])
+
+db.updateOperator.update({_id:3},{$currentDate:{'last_modified':true}})
+db.updateOperator.find()
+{ "_id" : 1, "item" : { "name" : "ab", "code" : "123" }, "qty" : 15, "tags" : [ "A", "B", "C" ], "last_modified" : "" }
+{ "_id" : 2, "item" : { "name" : "cd", "code" : "123" }, "qty" : 20, "tags" : [ "B" ], "last_modified" : "" }
+{ "_id" : 3, "item" : { "name" : "ij", "code" : "456" }, "qty" : 25, "tags" : [ "A", "B" ], "last_modified" : ISODate("2021-12-01T00:14:15.727Z") }
+{ "_id" : 4, "item" : { "name" : "xy", "code" : "456" }, "qty" : 30, "tags" : [ "B", "A" ], "last_modified" : "" }
+{ "_id" : 5, "item" : { "name" : "mn", "code" : "000" }, "qty" : 20, "tags" : [ [ "A", "B" ], "C" ], "last_modified" : "" }
+
+db.updateOperator.updateMany({'qty':{$gt:20}},{$currentDate:{'last_modified':true}})
+db.updateOperator.find()
+{ "_id" : 1, "item" : { "name" : "ab", "code" : "123" }, "qty" : 15, "tags" : [ "A", "B", "C" ], "last_modified" : "" }
+{ "_id" : 2, "item" : { "name" : "cd", "code" : "123" }, "qty" : 20, "tags" : [ "B" ], "last_modified" : "" }
+{ "_id" : 3, "item" : { "name" : "ij", "code" : "456" }, "qty" : 25, "tags" : [ "A", "B" ], "last_modified" : ISODate("2021-12-01T00:18:18.020Z") }
+{ "_id" : 4, "item" : { "name" : "xy", "code" : "456" }, "qty" : 30, "tags" : [ "B", "A" ], "last_modified" : ISODate("2021-12-01T00:18:18.021Z") }
+{ "_id" : 5, "item" : { "name" : "mn", "code" : "000" }, "qty" : 20, "tags" : [ [ "A", "B" ], "C" ], "last_modified" : "" }

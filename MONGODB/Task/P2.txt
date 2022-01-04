@@ -1,0 +1,11 @@
+# Update the student marks by object id
+
+> db.Quiz.find()
+{ "_id" : ObjectId("618dc501fc249b6918c15bbb"), "StudentName" : "A", "Maths" : 12, "Science" : 20, "English" : 15, "History" : 18 }
+{ "_id" : ObjectId("618dc501fc249b6918c15bbc"), "StudentName" : "B", "French" : 12, "Science" : 20, "English" : 15 }
+{ "_id" : ObjectId("618dc501fc249b6918c15bbd"), "StudentName" : "C"  }
+{ "_id" : ObjectId("618dc501fc249b6918c15bbe"), "StudentName" : "D", "English" : 30, "Science" : 12, "French" : 18 }
+
+# Student :c marks by "Science" : 20, "History" : 18, "French" : 22
+
+db.Quiz.update({"_id" : ObjectId("618dc501fc249b6918c15bbd")},{"StudentName" : "C","Science" : 20, "History" : 18, "French" : 22})

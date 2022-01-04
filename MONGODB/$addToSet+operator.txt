@@ -1,0 +1,11 @@
+db.createCollection('addToSetOperator')
+
+db.addToSetOperator.insertMany([
+{ _id: 1, letters: ["a", "b"] ,_id: 2, letters: ["m", "n"] }
+])
+
+db.addToSetOperator.update({_id:{$eq:2}},{$addToSet:{'letters':'o'}})
+db.addToSetOperator.find().pretty()
+
+{ "_id" : 1, "letters" : [ "a", "b" ] }
+{ "_id" : 2, "letters" : [ "m", "n", "o" ] }

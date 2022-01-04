@@ -1,0 +1,21 @@
+#Update the collection
+
+db.collectionName.update({condtion},{statement to change})
+
+#Update the collection by id
+
+db.collectionName.update({'_id':OrderId("618dc501fc249b6918c15bbb")},{statement to change})
+
+#Update the collection with Multiple Condition
+
+db.collectionName.update({condtion1,condtion2},{statement to change})
+
+#Update the collection if multiple dictionary is there
+
+ex:
+{"StudentName" : "D", "English" : {'objective':10,'subjective':20}  "Science" : 12, "French" : 18 }
+db.collectionName.update({'English.objective':10},{statement to change})
+
+#upsert Data
+
+db.collectionName.update({condtion},{statement to change},{upsert:true})

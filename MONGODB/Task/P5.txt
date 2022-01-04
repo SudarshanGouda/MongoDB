@@ -1,0 +1,9 @@
+#Finding in multiple dictionary 
+
+ db.createCollection('Movie')
+ 
+ db.Movie.insertMany([{'id':1, 'Name':'Saajan', 'Year':1992 , 'Merits':{'View':100,'Rating':4.0}},{'id':2, 'Name':'DDLG', 'Year':1995 , 'Merits':{'View':1000,'Rating':4.6}},{'id':3, 'Name':'Titanic', 'Year':1999 , 'Merits':{'View':1000,'Rating':4.8}},{'id':4, 'Name':'KKHH', 'Year':1998 , 'Merits':{'View':1000,'Rating':4.5}}])
+ 
+ db.Movie.find({'Year':1992,'Merits.View':100},{'id':1, 'Name':'Saajan', 'Year':1992 , 'Merits':{'View':100,'Rating':4.6}}).pretty()
+ 
+ 

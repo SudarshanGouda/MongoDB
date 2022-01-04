@@ -1,0 +1,51 @@
+db.createCollection('updategy121') 
+db.updateQu121.insertMany([{_id: 1,sku: "abc123",quant1ty: 10,metrics: {orders: 12,ratings: 4.5}}, 
+{_id: 2,sku: 'abt124',quantity: 9,metrics: {orders: 42,ratings: 3.5}}, 
+{_id: 3,sku: 'abc125',quantity: 10,metrics: {orders: 12,ratings: 3.5}}, 
+{_id: 4,sku: 'abt126',quantity: 15,metrics: {orders: 20,ratings: 3}},
+{_id:5,sku: 'abc127',quant1ty: 1 ,metrics: {orders: 22,ratings: 4}}, 
+{_id:6,sku: 'abc128',quantity: 10,metrics: {orders: 1,ratings: 3.5}} ])
+
+
+db.updateQu121.find()
+
+db.updateQu121.updateMany({'metrics.orders':{$gt:20}},{$inc:{'quantity':2}})
+db.updateQu121.find()
+
+{ "_id" : 1, "sku" : "abc123", "quant1ty" : 10, "metrics" : { "orders" : 12, "ratings" : 4.5 } }
+{ "_id" : 2, "sku" : "abt124", "quantity" : 11, "metrics" : { "orders" : 42, "ratings" : 3.5 } }
+{ "_id" : 3, "sku" : "abc125", "quantity" : 10, "metrics" : { "orders" : 12, "ratings" : 3.5 } }
+{ "_id" : 4, "sku" : "abt126", "quantity" : 15, "metrics" : { "orders" : 20, "ratings" : 3 } }
+{ "_id" : 5, "sku" : "abc127", "quant1ty" : 1, "metrics" : { "orders" : 22, "ratings" : 4 } }
+{ "_id" : 6, "sku" : "abc128", "quantity" : 10, "metrics" : { "orders" : 1, "ratings" : 3.5 } }
+
+
+db.updateQu121.updateMany({'metrics.ratings':{$gt:4.2}},{$mul:{'metrics.orders':2}})
+db.updateQu121.find()
+
+{ "_id" : 1, "sku" : "abc123", "quant1ty" : 10, "metrics" : { "orders" : 24, "ratings" : 4.5 } }
+{ "_id" : 2, "sku" : "abt124", "quantity" : 11, "metrics" : { "orders" : 42, "ratings" : 3.5 } }
+{ "_id" : 3, "sku" : "abc125", "quantity" : 10, "metrics" : { "orders" : 12, "ratings" : 3.5 } }
+{ "_id" : 4, "sku" : "abt126", "quantity" : 15, "metrics" : { "orders" : 20, "ratings" : 3 } }
+{ "_id" : 5, "sku" : "abc127", "quant1ty" : 1, "metrics" : { "orders" : 22, "ratings" : 4 } }
+{ "_id" : 6, "sku" : "abc128", "quantity" : 10, "metrics" : { "orders" : 1, "ratings" : 3.5 } }
+
+db.updateQu121.updateMany({'sku':{$eq:'abc127'}},{$set:{'quant1ty':0}})
+db.updateQu121.find()
+
+{ "_id" : 1, "sku" : "abc123", "quant1ty" : 10, "metrics" : { "orders" : 24, "ratings" : 4.5 } }
+{ "_id" : 2, "sku" : "abt124", "quantity" : 11, "metrics" : { "orders" : 42, "ratings" : 3.5 } }
+{ "_id" : 3, "sku" : "abc125", "quantity" : 10, "metrics" : { "orders" : 12, "ratings" : 3.5 } }
+{ "_id" : 4, "sku" : "abt126", "quantity" : 15, "metrics" : { "orders" : 20, "ratings" : 3 } }
+{ "_id" : 5, "sku" : "abc127", "quant1ty" : 0, "metrics" : { "orders" : 22, "ratings" : 4 } }
+{ "_id" : 6, "sku" : "abc128", "quantity" : 10, "metrics" : { "orders" : 1, "ratings" : 3.5 } }
+
+db.updateQu121.updateMany({'sku':{$eq:'abc123'}},{$unset:{'metrics':''}})
+db.updateQu121.find()
+{ "_id" : 1, "sku" : "abc123", "quant1ty" : 10}
+{ "_id" : 2, "sku" : "abt124", "quantity" : 11, "metrics" : { "orders" : 42, "ratings" : 3.5 } }
+{ "_id" : 3, "sku" : "abc125", "quantity" : 10, "metrics" : { "orders" : 12, "ratings" : 3.5 } }
+{ "_id" : 4, "sku" : "abt126", "quantity" : 15, "metrics" : { "orders" : 20, "ratings" : 3 } }
+{ "_id" : 5, "sku" : "abc127", "quant1ty" : 0, "metrics" : { "orders" : 22, "ratings" : 4 } }
+{ "_id" : 6, "sku" : "abc128", "quantity" : 10, "metrics" : { "orders" : 1, "ratings" : 3.5 } }
+>

@@ -1,0 +1,146 @@
+db.createCollection('inventory')
+
+db.inventory.insertMany([{id: ObjectId("5234cc89687ea597eabee675"),code: "xyz",
+tags: [ "school", "book", "bag", "headphone", "appliance" ],
+qty: [{ size: "S", num: 10, color: ["blue","red"] },
+          { size: "M", num: 45, color: ["blue","red"] },
+          { size: "L", num: 100, color: ["green","red"] }]
+		  ,"Name" : { "first" : "grace", "last" : "hopper" }}])
+		  
+		  
+		  
+db.inventory.update({},{$set:{'code':'abc','Name':{"first" : "sudarshan", "last" : "gouda"}}})
+db.inventory.find()
+
+{
+        "_id" : ObjectId("61a813e97a9b5b125a5ee18a"),
+        "id" : ObjectId("5234cc89687ea597eabee675"),
+        "code" : "abc",
+        "tags" : [
+                "school",
+                "book",
+                "bag",
+                "headphone",
+                "appliance"
+        ],
+        "qty" : [
+                {
+                        "size" : "S",
+                        "num" : 10,
+                        "color" : [
+                                "blue",
+                                "red"
+                        ]
+                },
+                {
+                        "size" : "M",
+                        "num" : 45,
+                        "color" : [
+                                "blue",
+                                "red"
+                        ]
+                },
+                {
+                        "size" : "L",
+                        "num" : 100,
+                        "color" : [
+                                "green",
+                                "red"
+                        ]
+                }
+        ],
+        "Name" : {
+                "first" : "sudarshan",
+                "last" : "gouda"
+        }
+}
+
+db.inventory.update({},{$set:{'tags':[1,5,22,98,125]}})
+db.inventory.find().pretty()
+{
+        "_id" : ObjectId("61a813e97a9b5b125a5ee18a"),
+        "id" : ObjectId("5234cc89687ea597eabee675"),
+        "code" : "abc",
+        "tags" : [
+                1,
+                5,
+                22,
+                98,
+                125
+        ],
+        "qty" : [
+                {
+                        "size" : "S",
+                        "num" : 10,
+                        "color" : [
+                                "blue",
+                                "red"
+                        ]
+                },
+                {
+                        "size" : "M",
+                        "num" : 45,
+                        "color" : [
+                                "blue",
+                                "red"
+                        ]
+                },
+                {
+                        "size" : "L",
+                        "num" : 100,
+                        "color" : [
+                                "green",
+                                "red"
+                        ]
+                }
+        ],
+        "Name" : {
+                "first" : "sudarshan",
+                "last" : "gouda"
+        }
+}
+db.inventory.update({},{$set:{'qty.1.color.1':'Black'}})
+db.inventory.find().pretty()
+
+{
+        "_id" : ObjectId("61a813e97a9b5b125a5ee18a"),
+        "id" : ObjectId("5234cc89687ea597eabee675"),
+        "code" : "abc",
+        "tags" : [
+                1,
+                5,
+                22,
+                98,
+                125
+        ],
+        "qty" : [
+                {
+                        "size" : "S",
+                        "num" : 10,
+                        "color" : [
+                                "blue",
+                                "red"
+                        ]
+                },
+                {
+                        "size" : "M",
+                        "num" : 45,
+                        "color" : [
+                                "blue",
+                                "Black"
+                        ]
+                },
+                {
+                        "size" : "L",
+                        "num" : 100,
+                        "color" : [
+                                "green",
+                                "red"
+                        ]
+                }
+        ],
+        "Name" : {
+                "first" : "sudarshan",
+                "last" : "gouda"
+        }
+}

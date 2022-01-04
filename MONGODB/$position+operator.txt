@@ -1,0 +1,44 @@
+db.createCollection('positionOperator')
+
+db.positionOperator.insertMany([
+{
+   _id: 1,
+   scores:[1,3,4]
+},
+{
+   _id: 2,
+   scores:[4,2,55]
+},
+{
+   _id: 3,
+   scores:[4,2,55]
+},
+{
+   _id: 4,
+   scores:[4,2,55]
+}
+])
+
+db.positionOperator.update({_id:2},{$push:{scores:{$each:[20,30,8,40]}}})
+db.positionOperator.find()
+
+{ "_id" : 1, "scores" : [ 1, 3, 4 ] }
+{ "_id" : 2, "scores" : [ 4, 2, 55, 20, 30, 8, 40 ] }
+{ "_id" : 3, "scores" : [ 4, 2, 55 ] }
+{ "_id" : 4, "scores" : [ 4, 2, 55 ] }
+
+db.positionOperator.update({_id:2},{$push:{scores:{$each:[20,30,8,40],$position:0}}})
+db.positionOperator.find()
+
+{ "_id" : 1, "scores" : [ 1, 3, 4 ] }
+{ "_id" : 2, "scores" : [ 20, 30, 8, 40, 4, 2, 55, 20, 30, 8, 40 ] }
+{ "_id" : 3, "scores" : [ 4, 2, 55 ] }
+{ "_id" : 4, "scores" : [ 4, 2, 55 ] }
+
+db.positionOperator.update({_id:3},{$push:{scores:{$each:[20,30,8,40],$position:1}}})
+db.positionOperator.find()
+
+{ "_id" : 1, "scores" : [ 1, 3, 4 ] }
+{ "_id" : 2, "scores" : [ 20, 30, 8, 40, 4, 2, 55, 20, 30, 8, 40 ] }
+{ "_id" : 3, "scores" : [ 4, 20, 30, 8, 40, 2, 55 ] }
+{ "_id" : 4, "scores" : [ 4, 2, 55 ] }

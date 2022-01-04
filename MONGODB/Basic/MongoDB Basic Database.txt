@@ -1,0 +1,17 @@
+#To see the DataBase
+ show dbs
+ 
+#To cereate datbase
+ use datbasename
+ 
+#To switch database'
+ use datbasename
+ 
+#To check which database we are working
+db
+
+#To drop the collection
+db.dropdatabse()
+
+#To exit from server
+exit

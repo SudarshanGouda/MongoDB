@@ -1,0 +1,14 @@
+#Creating document in collection
+db.collectionName.insert({'column1':'Detail1','column2':'Detail2'})
+
+#create document in collection(many)
+db.collectionName.insertMany({'column1':'Detail1','column2':'Detail2'},
+						{'column1':'Detail1','column2':'Detail2'},
+						{'column1':'Detail1','column2':'Detail2'})   
+
+#To see the document in collection
+db.collectionName.find()
+
+#To see the document in collection
+db.collectionName.find().pretty()
+

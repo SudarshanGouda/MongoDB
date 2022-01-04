@@ -1,0 +1,30 @@
+db.createCollection('renameOperator')
+
+db.renameOperator.insertMany([
+{
+  "_id": 1,
+  "alias": [ "The American Cincinnatus", "The American Fabius" ],
+  "mobile": "555-555-5555",
+  "name": { "first" : "george", "last" : "washington" }
+},
+{
+  "_id": 2,
+  "alias": [ "My dearest friend" ],
+  "mobile": "222-222-2222",
+  "nmae": { "first" : "abigail", "last" : "adams" }
+},
+{
+  "_id": 3,
+  "alias": [ "Amazing grace" ],
+  "mobile": "111-111-1111",
+  "nmae": { "first" : "grace", "last" : "hopper" }
+}
+])
+
+db.renameOperator.updateMany({},{$rename:{'nmae':'Name'}})
+db.renameOperator.find()
+
+{ "_id" : 1, "alias" : [ "The American Cincinnatus", "The American Fabius" ], "mobile" : "555-555-5555", "Name" : { "first" : "george", "last" : "washington" } }
+{ "_id" : 2, "alias" : [ "My dearest friend" ], "mobile" : "222-222-2222", "Name" : { "first" : "abigail", "last" : "adams" } }
+{ "_id" : 3, "alias" : [ "Amazing grace" ], "mobile" : "111-111-1111", "Name" : { "first" : "grace", "last" : "hopper" } }
+>

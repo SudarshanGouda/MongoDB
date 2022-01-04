@@ -1,0 +1,21 @@
+db.createCollection('insertOperator')
+
+db.insertOperatorOperator.insertMany([
+{ _id: 1, item: { name: "ab", code: "123" }, qty: 15, order:10, tags: [ "A", "B", "C" ], last_modified:""},
+{ _id: 2, item: { name: "cd", code: "123" }, qty: 20, tags: [ "B" ], last_modified:""},
+{ _id: 3, item: { name: "ij", code: "456" }, qty: 25, tags: [ "A", "B" ], last_modified:""},
+{ _id: 4, item: { name: "xy", code: "456" }, qty: 30, tags: [ "B", "A" ], last_modified:""},
+{ _id: 5, item: { name: "mn", code: "000" }, qty: 20, tags: [ [ "A", "B" ], "C" ], last_modified:""}
+])
+
+db.updateOperator.updateMany({'qty':{$eq:20}},{$inc:{'qty':5}})
+db.updateOperator.find()
+
+{ "_id" : 1, "item" : { "name" : "ab", "code" : "123" }, "qty" : 15, "tags" : [ "A", "B", "C" ], "last_modified" : "" }
+{ "_id" : 2, "item" : { "name" : "cd", "code" : "123" }, "qty" : 25, "tags" : [ "B" ], "last_modified" : "" }
+{ "_id" : 3, "item" : { "name" : "ij", "code" : "456" }, "qty" : 25, "tags" : [ "A", "B" ], "last_modified" : "" }
+{ "_id" : 4, "item" : { "name" : "xy", "code" : "456" }, "qty" : 30, "tags" : [ "B", "A" ], "last_modified" : "" }
+{ "_id" : 5, "item" : { "name" : "mn", "code" : "000" }, "qty" : 25, "tags" : [ [ "A", "B" ], "C" ], "last_modified" : "" }
+
+db.insertOperator.updateMany({'qty':{$eq:15}},{$inc:{'qty':5,'order':2}})
+db.insertOperator.find()

@@ -1,0 +1,17 @@
+#printing all document
+
+use school
+switched to db school
+db.Quiz.find()
+
+#printing all document formatted way
+
+db.Quiz.find().pretty()
+
+#Marks of Student D
+
+db.Quiz.find({"StudentName" : "D").pretty()
+
+#Marks of 30 in english and 12 in science
+
+db.Quiz.find({"English":30,"Science":12}).pretty()

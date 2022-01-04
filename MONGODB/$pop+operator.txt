@@ -1,0 +1,12 @@
+db.createCollection('popOperator')
+
+db.popOperator.insertMany([
+{ _id: 1, scores: [1,2,3,4] },{ _id: 2, letters: ["a", "b"]} ,{_id: 3, letters: ["m", "n"] }
+])
+
+db.popOperator.updateMany({},{$pop:{letters:1}})
+db.popOperator.find()
+
+{ "_id" : 1, "scores" : [ 1, 2, 3, 4 ] }
+{ "_id" : 2, "letters" : [ "a" ] }
+{ "_id" : 3, "letters" : [ "m" ] }

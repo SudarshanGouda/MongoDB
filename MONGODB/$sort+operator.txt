@@ -1,0 +1,15 @@
+db.createCollection('sortOperator')
+
+db.sortOperator.insertMany([
+{ "_id" : 1, "tests" : [  89,  70,  89,  50 ] }
+])
+
+db.sortOperator.updateMany({},{$push:{tests:{$each:[94,108,122,1332],$sort:1}}})
+db.sortOperator.find()
+
+{ "_id" : 1, "tests" : [ 50, 70, 89, 89, 94, 108, 122, 1332 ] }
+
+db.sortOperator.updateMany({},{$push:{tests:{$each:[],$sort:-1}}})
+db.sortOperator.find()
+
+{ "_id" : 1, "tests" : [ 1332, 122, 108, 94, 89, 89, 70, 50 ] }

@@ -1,0 +1,12 @@
+#Project 1
+
+#create the collection called quiz and add student name and marks
+
+db.createCollection('Quiz')
+
+db.Quiz.insertMany({"StudentName" : "A", "Maths" : 12, "Science" : 20, "English" : 15, "History" : 18},
+{ "StudentName" : "B", "French" : 12, "Science" : 20, "English" : 15 },
+{ "StudentName" : "C", "Science" : 20, "History" : 18, "French" : 22 },
+{ "StudentName" : "D", "English" : 30, "Science" : 12, "French" : 18 })
+
+

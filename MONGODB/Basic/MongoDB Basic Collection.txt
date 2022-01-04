@@ -1,0 +1,8 @@
+#To create the collection
+db.createCollection('collectionName')
+
+#To see the collection inside the database
+show bw collections
+
+#To drop the collection
+db.collectionName.drop()
