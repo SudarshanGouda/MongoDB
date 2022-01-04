@@ -1,2 +1,2 @@
 # MongoDB
-Some Tasks and cheat sheet
+Some Learning Model Task and Cheat sheet
